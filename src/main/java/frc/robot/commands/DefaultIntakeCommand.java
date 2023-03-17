@@ -31,20 +31,22 @@ public class DefaultIntakeCommand extends CommandBase{
     public void execute() {
         // Opening and Closing Claw -- Cone and Release Cone
         if (OI.takeCone()) {
-            s_intake.openClaw();
+            s_intake.openClaw(0);
+            s_intake.openClaw(1);
         }
 
         if (OI.releaseCone()) {
-            s_intake.closeClaw();
+            s_intake.closeClaw(1);
+            s_intake.closeClaw(0);
         }
 
         // Grab and Release Cube
         if (OI.takeCube() && !s_intake.hasCube()) {
-            s_intake.OperateIntake(-1);
+            s_intake.openClaw(0);
         } 
 
         if (OI.releaseCube() && s_intake.hasCube()) {
-            s_intake.OperateIntake(1);
+            s_intake.closeClaw(0);
         }
     }
 
