@@ -14,4 +14,21 @@ public class OI {
     public static final boolean exampleButton(){
         return driverController.getAButton();
     }
+
+    // Intake Inputs
+    public static final boolean takeCone(){
+        return operatorController.getLeftBumperPressed();
+    }
+
+    public static final boolean releaseCone(){
+        return operatorController.getRightBumperPressed();
+    }
+
+    public static final boolean takeCube(){
+        return operatorController.getLeftTriggerAxis() > 0;
+    }
+
+    public static final boolean releaseCube(){
+        return operatorController.getRightTriggerAxis() > 0;
+    }
 }
