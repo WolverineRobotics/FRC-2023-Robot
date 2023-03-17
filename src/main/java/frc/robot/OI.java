@@ -14,4 +14,11 @@ public class OI {
     public static final boolean exampleButton(){
         return driverController.getAButton();
     }
+    public static final double drivespeed(){
+        return driverController.getLeftY();
+    }
+
+    public static final double driverotation(){
+        return driverController.getRightX();
+    }
 }
