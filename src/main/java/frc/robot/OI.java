@@ -16,19 +16,12 @@ public class OI {
     }
 
     // Intake Inputs
-    public static final boolean takeCone(){
-        return operatorController.getLeftBumperPressed();
-    }
-
-    public static final boolean releaseCone(){
-        return operatorController.getRightBumperPressed();
-    }
-
-    public static final boolean takeCube(){
+    // Triggers now used for intake/output of cones and cubes 
+    public static final boolean takeConeCube(){
         return operatorController.getLeftTriggerAxis() > 0;
     }
 
-    public static final boolean releaseCube(){
+    public static final boolean releaseConeCube(){
         return operatorController.getRightTriggerAxis() > 0;
     }
 }
