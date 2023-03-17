@@ -14,4 +14,12 @@ public class OI {
     public static final boolean exampleButton(){
         return driverController.getAButton();
     }
+
+    public static double manualElbow(){
+        return operatorController.getRightY();
+    }
+
+    public static double manualShoulder(){
+        return operatorController.getLeftY();
+    }
 }

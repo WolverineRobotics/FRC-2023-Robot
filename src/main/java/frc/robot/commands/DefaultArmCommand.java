@@ -8,5 +8,12 @@ public class DefaultArmCommand extends CommandBase{
     //TELEOP CONTROLS GO HERE
     public DefaultArmCommand(ArmSubsystem arm){
         s_arm = arm;
+
+    }
+    
+    @Override 
+    public void execute(){
+        s_arm.rotateElbow(OI.manualElbow());
+        s_arm.rotateShoulder(OI.manualShoulder());
     }
 }
