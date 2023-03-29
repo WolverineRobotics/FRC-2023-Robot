@@ -8,5 +8,23 @@ public class DefaultDriveCommand extends CommandBase{
     //TELEOP CONTROLS GO HERE
     public DefaultDriveCommand(DriveSubsystem drive){
         s_drive = drive;
+        addRequirements(s_drive);
+    }
+
+    @Override
+    public void initialize() {
+
+    }
+
+    @Override
+    public void execute() {
+        
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
     }
 }
+
+

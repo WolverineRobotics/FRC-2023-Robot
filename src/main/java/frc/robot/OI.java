@@ -16,19 +16,19 @@ public class OI {
     }
 
     // Intake Inputs
-    public static final boolean takeCone(){
+    public static final boolean takeObject(){
         return operatorController.getLeftBumperPressed();
     }
 
-    public static final boolean releaseCone(){
+    public static final boolean releaseObject(){
         return operatorController.getRightBumperPressed();
     }
-
-    public static final boolean takeCube(){
-        return operatorController.getLeftTriggerAxis() > 0;
+    public static final boolean moveWristForward(){
+        return operatorController.getLeftY() > 0.3;
     }
 
-    public static final boolean releaseCube(){
-        return operatorController.getRightTriggerAxis() > 0;
+    public static final boolean moveWristBackward(){
+        return operatorController.getLeftY() < 0;
     }
+
 }
