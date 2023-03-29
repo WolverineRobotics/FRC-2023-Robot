@@ -17,7 +17,7 @@ public class ElevatorSubsystem extends SubsystemBase{
 
     private int elevatorPosition = 0
 
-    public elevatorSystem(){
+    public ElevatorSystem(){
 
         l_motor = new CANSparkMax();
         r_motor = new CANSparkMax();
@@ -35,11 +35,13 @@ public class ElevatorSubsystem extends SubsystemBase{
             return elevatorEncoder.get();
         }   
 
-        public void positionCheck(){
-            if lowerelevatorlimit.get()
+        public void PositionCheck(){
+            if (lowerelevatorlimit.get()) {
                 elevatorPosition = 0;
-            else if upperelevatorlimit.get()
+            }
+            else if (upperelevatorlimit.get()){
                 elevatorPosition = 2; 
+            }
         }
     }
 }
