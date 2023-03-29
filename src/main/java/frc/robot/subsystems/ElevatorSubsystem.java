@@ -52,7 +52,7 @@ public class ElevatorSubsystem extends SubsystemBase{
         public void elevatorDown(double speed){
             m_motor.set(speed)
         }
-        public void autoElevatorRetract(double speed){
+        public void elevatorAutoRetract(double speed){
             m_motor.set(-1)
         }
         */
