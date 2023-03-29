@@ -23,8 +23,8 @@ public class ElevatorSubsystem extends SubsystemBase{
         r_motor = new CANSparkMax();
         m_motor = new MotorControllerGroup(l_motor, r_motor);
 
-        toplimitswitch = new DigitalInput(0);
-        bottomlimitswitch = new DigitalInput(1);
+        upperelevatorlimit = new DigitalInput(0);
+        lowerelevatorlimit = new DigitalInput(1);
 
         // Motor Functions
         public void setSpeed(double speed){
