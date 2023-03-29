@@ -13,7 +13,7 @@ public class ElevatorSubsystem extends SubsystemBase{
     private final Encoder elevatorEncoder;
     private final CANSparkMax l_motor, r_motor; 
     private final MotorControllerGroup m_motor;
-    private final DigitalInput upperelevatorlimit, lowerelevatorlimit; 
+    private final DigitalInput upperElevatorLimit, lowerElevatorLimit; 
 
     private int elevatorPosition = 0
 
@@ -29,27 +29,52 @@ public class ElevatorSubsystem extends SubsystemBase{
         upperelevatorlimit = new DigitalInput(1);
 
         // Architecture says there's an encoder so I'll just leave this here
-        elevatorEncoder = new Encoder(Constants.ELEVATOR_ENCODER_A, false, EncodingType.k2X);
+        elevatorEncoder = new Encoder(Constants.LIFT_ENCODER_A, Constants.LIFT_ENCODER_B, false, EncodingType.k2X);
 
-        // Motor Speed
-        public void setSpeed(double speed){
-            m_motor.set(speed);
+        // Default Commands -- Temporarily Empty
+        public void initDefaultCommand() {
+            setDefaultCommand(new DefaultElevatorCommand());
         }
 
-        // Checks for Elevator Positioning from Limit Switches
+        // *************** //
+        // Motor Functions //  
+        // *************** //
+
+        public void setSpeed(double speed){
+            m_motor.set(speed)
+        }
+
+        ///************Part of OI/DefaultElevatorCommand************/// 
+        /*
+        public void elevatorUp(double speed){ 
+            m_motor.set(speed)
+        }
+        public void elevatorDown(double speed){
+            m_motor.set(speed)
+        }
+        public void autoElevatorRetract(double speed){
+            m_motor.set(-1)
+        }
+        */
+        ///********************************************************///
+
+        // ***************** //
+        // Positioning Check //  
+        // ***************** //
+
         public boolean getUpperLimitSwitch(){
-            return upperelevatorlimit.get();
+            return upperElevatorLimit.get();
         }  
 
         public boolean getLowerLimitSwitch(){
-            return lowerelevatorlimit.get(); 
+            return lowerElevatorLimit.get(); 
         }  
         
         public void PositionCheck(){
-            if (lowerelevatorlimit.get()) {
+            if (lowerElevatorLimit.get()) {
                 elevatorPosition = 0; // Bottom of Elevator
             }
-            else if (upperelevatorlimit.get()){
+            else if (upperElevatorLimit.get()){
                 elevatorPosition = 2; // Top of Elevator
             }
             else {
@@ -57,7 +82,10 @@ public class ElevatorSubsystem extends SubsystemBase{
             }
         }
 
-        // Elevator Encoder Stuff -- I can remove this if not needed
+        // ************************** //
+        // Elevator Encoder Functions //  
+        // ************************** //
+
         public int getEncoderPosition(){
             return elevatorEncoder.get();
         } 

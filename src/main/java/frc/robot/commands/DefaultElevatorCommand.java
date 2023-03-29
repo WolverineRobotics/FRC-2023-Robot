@@ -9,4 +9,12 @@ public class DefaultElevatorCommand extends CommandBase{
     public DefaultElevatorCommand(ElevatorSubsystem elevator){
         s_elevator = elevator;
     }
+
+    /* @Override
+    public void execute(){
+        s_elevator.elevatorUp(OI.manualElevatorUp());
+        s_elevator.elevatorDown(OI.manualElevatorDown());
+        s_elevator.elevatorAutoRetract(OI.manualElevatorRetract());
+    }
+    */
 }

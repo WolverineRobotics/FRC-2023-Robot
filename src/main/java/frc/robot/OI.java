@@ -14,4 +14,16 @@ public class OI {
     public static final boolean exampleButton(){
         return driverController.getAButton();
     }
+
+    /*
+    public static double manualElevatorUp(){
+        return operatorController.getRightTriggerAxis(); 
+    }
+    public static double manualElevatorDown(){
+        return operatorController.getLeftTriggerAxis(); 
+    }
+    public static double manualElevatorRetract(){
+        return operatorController.getAButton();
+    }
+    */
 }
