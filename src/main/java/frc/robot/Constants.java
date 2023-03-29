@@ -32,12 +32,8 @@ public class Constants {
     public static final int SHOULDER_MOTOR = 6;
     public static final int ELBOW_MOTOR = 7;
 
-    public static final int INTAKE_MOTOR = 8; //Talon SRX
-
-    //PCM
-    public static final int INTAKE_CLAW_FORWARD = 0;
-    public static final int INTAKE_CLAW_REVERSE = 1;
-
+    public static final int INTAKE_WRIST_MOTOR = 0; // I DONT KNOW WHAT VALUE THESE MOTORS SHOULD BE - OUEN
+    public static final int INTAKE_WHEEL_MOTOR = 0; 
 
     //USB
     public static final int DRIVER_CONTROLLER = 0;
