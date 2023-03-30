@@ -19,9 +19,9 @@ public class DefaultElevatorCommand extends CommandBase{
     
     @Override
     public void execute(){
-        s_elevator.elevatorUp(OI.manualElevatorUp());
-        s_elevator.elevatorDown(OI.manualElevatorDown());
-        s_elevator.elevatorAutoRetract(OI.manualElevatorRetract());
+        s_elevator.elevatorUp(frc.robot.OI.manualElevatorUp());
+        s_elevator.elevatorDown(frc.robot.OI.manualElevatorDown());
+        s_elevator.elevatorAutoRetract(frc.robot.OI.manualElevatorRetract());
     }
 
 }
