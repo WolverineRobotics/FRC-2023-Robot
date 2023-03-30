@@ -3,90 +3,90 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
+
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import frc.robot.commands.elevator.defaultElevatorCommand;
 import frc.robot.Constants;
+import frc.robot.commands.elevator.defaultElevatorCommand; // WHAT DO YOU MEAN THIS HAS AN ERROR?? 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ElevatorSubsystem extends SubsystemBase{
     
-    private final Encoder elevatorEncoder;
-    private final CANSparkMax l_motor, r_motor; 
+    private final CANSparkMax l_motor, r_motor;
     private final MotorControllerGroup m_motor;
-    private final DigitalInput upperElevatorLimit, lowerElevatorLimit; 
+    private final DigitalInput upperlimitSwitch, lowerlimitSwitch;
+    private final Encoder elevatorEncoder;
 
-    private int elevatorPosition = 0;
+    public int elevatorPosition = 0;
 
     public ElevatorSubsystem(){
-        
-        // Motors
-        l_motor = new CANSparkMax(Constants.ELEVATOR_MOTOR_A);
-        r_motor = new CANSparkMax(Constants.ELEVATOR_MOTOR_B);
+
+        l_motor = new CANSparkMax(Constants.ELEVATOR_MOTOR_A, MotorType.kBrushless);
+        r_motor = new CANSparkMax(Constants.ELEVATOR_MOTOR_B, MotorType.kBrushless);
         m_motor = new MotorControllerGroup(l_motor, r_motor);
 
-        // Limit Switches
-        lowerElevatorLimit = new DigitalInput(0);
-        upperElevatorLimit = new DigitalInput(1);
+        lowerlimitSwitch = new DigitalInput(0);
+        upperlimitSwitch = new DigitalInput(1);
 
-        // Encoder
-        elevatorEncoder = new Encoder(Constants.LIFT_ENCODER_A, Constants.LIFT_ENCODER_B, false, EncodingType.k2X);
+        elevatorEncoder = new Encoder(Constants.LIFT_ENCODER_A, Constants.LIFT_ENCODER_B, false, Encoder.EncodingType.k2X);
+    }
 
-        public void initDefaultCommand() {
-            setDefaultCommand(new DefaultElevatorCommand());
-        }
+    // *************** //
+    // Motor Functions //  
+    // *************** //
 
-        // *************** //
-        // Motor Functions //  
-        // *************** //
+    /* TIL to not insert the public void methods within the Subsystem method.. Otherwise everything becomes a red-lined mess.
+       Revise if needed.
+    */ 
+  
 
-        public void elevatorUp(double speed){ 
-            m_motor.set(speed);
-        }
-        public void elevatorDown(double speed){
-            m_motor.set(speed);
-        }
-        public void elevatorAutoRetract(double speed){
-            m_motor.set(-1);
-        }
+    public void elevatorUp(double manualelevatorUp) {
+        m_motor.set(manualelevatorUp); // This sets the speeds.
+    } 
 
-        // ***************** //
-        // Positioning Check //  
-        // ***************** //
+    public void elevatorDown(double manualelevatorDown) {
+        m_motor.set(manualelevatorDown);
+    }
 
-        public boolean getUpperLimitSwitch(){
-            return upperElevatorLimit.get();
-        }  
+    public void elevatorRetraction(double manualelevatorRetraction) {
+        m_motor.set(-manualelevatorRetraction);
+    }
 
-        public boolean getLowerLimitSwitch(){
-            return lowerElevatorLimit.get(); 
-        }  
-        
-        public void PositionCheck(){
-            if (lowerElevatorLimit.get()) {
-                elevatorPosition = 0; // Bottom of Elevator
-            }
-            else if (upperElevatorLimit.get()){
-                elevatorPosition = 2; // Top of Elevator
-            }
-            else {
-                elevatorPosition = 1; // "Approximately" Return the Middle :troll:
-            }
-        }
+     // ***************** //
+    // Positioning Check //  
+    // ***************** //
 
-        // ************************** //
-        // Elevator Encoder Functions //  
-        // ************************** //
+    public boolean upperlimitSwitch(){
+        return upperlimitSwitch.get();
+    }
 
-        public int getEncoderPosition(){
-            return elevatorEncoder.get();
+    public boolean lowerlimitSwitch(){
+        return upperlimitSwitch.get();
+    }
+
+    public void PositionCheck(){
+        if (upperlimitSwitch.get()){
+            elevatorPosition = 2; // Very Top
         } 
-
-        public double getEncoderDistance(){
-            return elevatorEncoder.getDistance();
+        else if (lowerlimitSwitch.get()){
+            elevatorPosition = 0; // Very Bottom
         }
+        else {
+            elevatorPosition = 1; // "Middle" :troll:
+        }
+    }
+
+    // ************************** //
+    // Elevator Encoder Functions //  
+    // ************************** //
+
+    public int getEncoderPosition(){
+        return elevatorEncoder.get();
+    }
+
+    public double getEncoderDistance(){
+        return elevatorEncoder.getDistance();
     }
 }

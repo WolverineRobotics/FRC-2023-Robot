@@ -11,17 +11,21 @@ public class OI {
         operatorController = new XboxController(Constants.OPERATOR_CONTROLLER);
     }
 
-    public static double manualElevatorUp(){
-        return operatorController.getRightTriggerAxis() > 0.3; 
+    public static double manualelevatorUp(){
+        return operatorController.getLeftTriggerAxis();
     }
-    public static double manualElevatorDown(){
-        return operatorController.getLeftTriggerAxis() < 0.3; 
-    }
-    public static double manualElevatorRetract(){
-        return operatorController.getAButton(); 
 
-        /* Possibly no need for any values to pass through this? 
-           I feel like it'll just check if getAButton is (0, 1), no need to check for any partial presses.
-        */
+    public static double manualelevatorDown(){
+        return operatorController.getRightTriggerAxis();
+    }
+
+    public static boolean manualelevatorRetraction(){
+        return operatorController.getAButton();
+
+         /* I'm not sure if I am to account for partial pressing of triggers..
+            So that when it reaches a value where x > 0.5 or x < 0.5 for example, it should trip and execute.
+            No account for buttons since they're either 0 or 1 I guess?
+         */ 
+
     }
 }

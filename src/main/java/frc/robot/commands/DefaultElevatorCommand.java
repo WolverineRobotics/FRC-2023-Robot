@@ -10,18 +10,10 @@ public class DefaultElevatorCommand extends CommandBase{
         s_elevator = elevator;
     }
 
-    /* Commands/OI based off the arm code we went over two weeks ago. 
-       From my understanding, "s_elevator" commands call corresponding OI methods after passing specific values,
-       then to ElevatorSubsystem to make elevator go brrrr.
-
-       Review if needed.
-    */
-    
     @Override
     public void execute(){
-        s_elevator.elevatorUp(frc.robot.OI.manualElevatorUp());
-        s_elevator.elevatorDown(frc.robot.OI.manualElevatorDown());
-        s_elevator.elevatorAutoRetract(frc.robot.OI.manualElevatorRetract());
-    }
-
+        s_elevator.elevatorUp(frc.robot.OI.manualelevatorUp());
+        s_elevator.elevatorDown(frc.robot.OI.manualelevatorUp());
+        s_elevator.elevatorRetraction(frc.robot.OI.manualelevatorUp());
+    } 
 }
