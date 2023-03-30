@@ -28,10 +28,9 @@ public class ElevatorSubsystem extends SubsystemBase{
         lowerelevatorlimit = new DigitalInput(0);
         upperelevatorlimit = new DigitalInput(1);
 
-        // Architecture says there's an encoder so I'll just leave this here
+        // Encoder
         elevatorEncoder = new Encoder(Constants.LIFT_ENCODER_A, Constants.LIFT_ENCODER_B, false, EncodingType.k2X);
 
-        // Default Commands -- Temporarily Empty
         public void initDefaultCommand() {
             setDefaultCommand(new DefaultElevatorCommand());
         }
@@ -40,12 +39,6 @@ public class ElevatorSubsystem extends SubsystemBase{
         // Motor Functions //  
         // *************** //
 
-        public void setSpeed(double speed){
-            m_motor.set(speed)
-        }
-
-        ///************Part of OI/DefaultElevatorCommand************/// 
-        /*
         public void elevatorUp(double speed){ 
             m_motor.set(speed)
         }
@@ -55,8 +48,6 @@ public class ElevatorSubsystem extends SubsystemBase{
         public void elevatorAutoRetract(double speed){
             m_motor.set(-1)
         }
-        */
-        ///********************************************************///
 
         // ***************** //
         // Positioning Check //  
@@ -78,7 +69,7 @@ public class ElevatorSubsystem extends SubsystemBase{
                 elevatorPosition = 2; // Top of Elevator
             }
             else {
-                elevatorPosition = 1; // "Approximately" the Middle
+                elevatorPosition = 1; // "Approximately" Return the Middle :troll:
             }
         }
 
