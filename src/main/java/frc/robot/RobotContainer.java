@@ -17,6 +17,7 @@ public class RobotContainer {
   private DriveSubsystem s_drive;
   private ElevatorSubsystem s_elevator;
   private IntakeSubsystem s_intake;
+  private AutoBalancer balancer;
 
   public RobotContainer() {
     configureBindings();
@@ -27,6 +28,10 @@ public class RobotContainer {
     s_drive.setDefaultCommand(new DefaultDriveCommand(s_drive));
     s_elevator.setDefaultCommand(new DefaultElevatorCommand(s_elevator));
     s_intake.setDefaultCommand(new DefaultIntakeCommand(s_intake));
+  }
+
+  public DriveSubsystem getDrive(){
+    return s_drive;
   }
 
   private void configureBindings() {}

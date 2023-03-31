@@ -2,16 +2,17 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class IntakeSubsystem extends SubsystemBase {
     //DO NOT PUT CONTROLLER STUFF IN HERE
-    private final WPI_TalonSRX wheelMotor;  
-    private final WPI_TalonSRX wristMotor;  
+    private CANSparkMax wheelMotor;  
+    private CANSparkMax wristMotor;  
 
     public IntakeSubsystem() {
-        wheelMotor = new WPI_TalonSRX(Constants.INTAKE_WHEEL_MOTOR);
-        wristMotor = new WPI_TalonSRX(Constants.INTAKE_WRIST_MOTOR);
+        wheelMotor = new CANSparkMax(Constants.INTAKE_WHEEL_MOTOR, MotorType.kBrushless);
+        wristMotor = new CANSparkMax(Constants.INTAKE_WRIST_MOTOR, MotorType.kBrushless);
 
     }
 
@@ -24,8 +25,11 @@ public class IntakeSubsystem extends SubsystemBase {
     public void operateWrist(double speed) {
         wristMotor.set(speed);
     }
+    
     // Get position of Wrist Motor ---- This Function Is Supposed To Check The Distance The Wrist Motor Has Spun
     public void getWristPos(double orientation) {
-        wristMotor.get();
+        wristMotor.getEncoder().getPosition();
     }
+
+
 }

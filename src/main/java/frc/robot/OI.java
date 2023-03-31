@@ -16,19 +16,68 @@ public class OI {
     }
 
     // Intake Inputs
-    public static final boolean takeObject(){
-        return operatorController.getLeftBumperPressed();
+    public static final double getIntakeSpeed(){
+
+        double forward = 0, backward = 0;
+
+        if(operatorController.getLeftBumperPressed()){
+            backward = 1;
+        }
+        if(operatorController.getRightBumperPressed()){
+            forward = 1;
+        }
+
+        return forward - backward;
     }
 
-    public static final boolean releaseObject(){
-        return operatorController.getRightBumperPressed();
-    }
-    public static final boolean moveWristForward(){
-        return operatorController.getLeftY() > 0.3;
+
+    // Intake Wrist Rotation
+    public static final double getWristSpeed(){
+        double forward = 0, backward = 0;
+
+        //if (operatorController.getPOV() == 0) {
+        //    forward = 1;
+        //}
+        //if (operatorController.getPOV() == 180) {
+        //    backward = 1;
+        //}
+
+        if (operatorController.getPOV() == 0) {
+            return 1;
+        }
+        if (operatorController.getPOV() == 180) {
+            return -1;
+        }
+        else{
+            return 0;
+        }
+        //return forward - backward;
     }
 
-    public static final boolean moveWristBackward(){
-        return operatorController.getLeftY() < 0;
+
+
+    // Driver Inputs, comment sponsored by RaidyShadyLaidy69 
+    public static final double getDriverSpeed(){
+        return driverController.getLeftY();
     }
 
+    public static final double getDriverRotation(){
+        return driverController.getRightX();
+    }
+    public static final boolean balance(){
+        return driverController.getAButton();
+    }
+
+    // Elevator Inputs
+    public static double manualelevatorUp(){
+        return operatorController.getRightTriggerAxis();
+    }
+
+    public static double manualelevatorDown(){
+        return operatorController.getLeftTriggerAxis();
+    }
+
+    public static boolean autoelevatorRetraction(){
+        return operatorController.getAButton();
+    }
 }

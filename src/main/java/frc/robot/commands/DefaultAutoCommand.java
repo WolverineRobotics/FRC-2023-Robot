@@ -4,16 +4,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
 import frc.robot.subsystems.DriveSubsystem;
 
-public class DefaultDriveCommand extends CommandBase{
+public class DefaultAutoCommand extends CommandBase{
     private DriveSubsystem s_drive;
-    private double speed = 0.5, rotate_speed = 0.5;
     //TELEOP CONTROLS GO HERE
 
-    public DefaultDriveCommand(DriveSubsystem drive){
+    public DefaultAutoCommand(DriveSubsystem drive){
         s_drive = drive;
         addRequirements(s_drive);
     }
-
+    
     @Override
     public void initialize() {
 
@@ -21,13 +20,8 @@ public class DefaultDriveCommand extends CommandBase{
 
     @Override
     public void execute() {
-        //if(OI.balance()){
-        //    s_drive.balance();
-        //}
-        //else
-        //{
-        s_drive.arcade(OI.getDriverSpeed() * speed, OI.getDriverRotation() * rotate_speed);
-        //}
+        
+        
     }
 
     @Override
@@ -35,5 +29,3 @@ public class DefaultDriveCommand extends CommandBase{
         return false;
     }
 }
-
-

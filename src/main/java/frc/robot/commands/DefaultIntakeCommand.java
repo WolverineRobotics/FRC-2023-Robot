@@ -8,6 +8,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.OI;
 import frc.robot.subsystems.IntakeSubsystem;
 
 public class DefaultIntakeCommand extends CommandBase{
@@ -27,21 +28,13 @@ public class DefaultIntakeCommand extends CommandBase{
 
     @Override
     public void execute() {
-        // Wheel Movement
-        if (frc.robot.OI.takeObject()) {
-            s_intake.operateIntake(-1);
-        }
-        if (frc.robot.OI.releaseObject()) {
-            s_intake.operateIntake(1);
-        }
+        // NO LIMIT SWITCHES + MOTORS ARE SET TO TALONX + MOTOR IDS ARE NOT SET
 
-        // Wrist Movement
-        if (frc.robot.OI.moveWristForward()) {
-            s_intake.operateWrist(1);
-        }
-        if (frc.robot.OI.moveWristBackward()) {
-            s_intake.operateWrist(-1);
-        }
+        // Wheel Movement
+        s_intake.operateIntake(OI.getIntakeSpeed() * 0.5);
+
+        // Wrist Movement 
+        s_intake.operateWrist(OI.getWristSpeed() * 0.3);
     }
 
     @Override
