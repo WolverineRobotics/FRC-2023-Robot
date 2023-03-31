@@ -2,14 +2,12 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.Constants;
-import frc.robot.commands.elevator.defaultElevatorCommand; // WHAT DO YOU MEAN THIS HAS AN ERROR?? 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ElevatorSubsystem extends SubsystemBase{
@@ -36,22 +34,25 @@ public class ElevatorSubsystem extends SubsystemBase{
     // *************** //
     // Motor Functions //  
     // *************** //
-
-    /* TIL to not insert the public void methods within the Subsystem method.. Otherwise everything becomes a red-lined mess.
-       Revise if needed.
-    */ 
   
-
     public void elevatorUp(double manualelevatorUp) {
-        m_motor.set(manualelevatorUp); // This sets the speeds.
+        if(!upperlimitSwitch.get()) {
+            m_motor.set(manualelevatorUp);
+        } else {
+            m_motor.set(0);
+        }
     } 
 
     public void elevatorDown(double manualelevatorDown) {
-        m_motor.set(manualelevatorDown);
+        if(!lowerlimitSwitch.get()) {
+            m_motor.set(manualelevatorDown);
+        } else {
+            m_motor.set(0);
+        }
     }
 
-    public void elevatorRetraction(double manualelevatorRetraction) {
-        m_motor.set(-manualelevatorRetraction);
+    public void elevatorRetraction(double autoelevatorRetraction) {
+        m_motor.set(-1);
     }
 
      // ***************** //

@@ -19,13 +19,7 @@ public class OI {
         return operatorController.getRightTriggerAxis();
     }
 
-    public static boolean manualelevatorRetraction(){
+    public static boolean autoelevatorRetraction(){
         return operatorController.getAButton();
-
-         /* I'm not sure if I am to account for partial pressing of triggers..
-            So that when it reaches a value where x > 0.5 or x < 0.5 for example, it should trip and execute.
-            No account for buttons since they're either 0 or 1 I guess?
-         */ 
-
     }
 }
