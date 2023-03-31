@@ -12,11 +12,11 @@ public class OI {
     }
 
     public static double manualelevatorUp(){
-        return operatorController.getLeftTriggerAxis();
+        return operatorController.getRightTriggerAxis();
     }
 
     public static double manualelevatorDown(){
-        return operatorController.getRightTriggerAxis();
+        return operatorController.getLeftTriggerAxis();
     }
 
     public static boolean autoelevatorRetraction(){
