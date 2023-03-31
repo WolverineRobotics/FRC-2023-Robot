@@ -51,7 +51,7 @@ public class ElevatorSubsystem extends SubsystemBase{
         }
     }
 
-    public void elevatorRetraction(double autoelevatorRetraction) {
+    public void elevatorRetraction(boolean autoelevatorRetraction) {
         m_motor.set(-1);
     }
 
